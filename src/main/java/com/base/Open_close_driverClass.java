@@ -1,4 +1,4 @@
-package com.Open_close_driver;
+package com.base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,7 +15,7 @@ public class Open_close_driverClass {
         opera_close();
         edge_launch();
         edge_close();
-        url_open();
+        url_open("https://google.com/");
     }
 
     public static void chrome_launch() {
@@ -42,8 +42,8 @@ public class Open_close_driverClass {
     public static void edge_close(){
         driver.close();
     }
-    public static void url_open(){
-        driver.get("http://google.com/");
+    public static void url_open( String URL){
+        driver.get(URL);
     }
 }
 
