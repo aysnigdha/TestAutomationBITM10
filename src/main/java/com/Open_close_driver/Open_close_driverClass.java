@@ -15,6 +15,7 @@ public class Open_close_driverClass {
         opera_close();
         edge_launch();
         edge_close();
+        url_open();
     }
 
     public static void chrome_launch() {
@@ -40,6 +41,9 @@ public class Open_close_driverClass {
     }
     public static void edge_close(){
         driver.close();
+    }
+    public static void url_open(){
+        driver.get("http://google.com/");
     }
 }
 
