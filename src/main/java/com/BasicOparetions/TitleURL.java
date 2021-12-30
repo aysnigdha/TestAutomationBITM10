@@ -1,8 +1,8 @@
 package com.BasicOparetions;
 
-import com.base.Open_close_driverClass;
+import com.base.BaseOfProject;
 
-public class TitleURL extends Open_close_driverClass{
+public class TitleURL extends BaseOfProject {
 
     public static void main(String[] args) {
         edge_launch();

@@ -1,8 +1,8 @@
 package com.BasicOparetions;
 
-import com.base.Open_close_driverClass;
+import com.base.BaseOfProject;
 
-public class NavigateTaste extends Open_close_driverClass {
+public class NavigateTaste extends BaseOfProject {
     public static void main(String[] args) {
         chrome_launch();
         url_open("https://google.com/");

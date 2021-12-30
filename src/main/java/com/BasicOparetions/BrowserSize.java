@@ -1,9 +1,9 @@
 package com.BasicOparetions;
 
-import com.base.Open_close_driverClass;
+import com.base.BaseOfProject;
 import org.openqa.selenium.Dimension;
 
-public class BrowserSize extends Open_close_driverClass {
+public class BrowserSize extends BaseOfProject {
     public static void main(String[] args) {
         chrome_launch();
         getMaximumWindowSize();
