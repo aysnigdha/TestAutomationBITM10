@@ -3,7 +3,6 @@ package com.base;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.opera.OperaDriver;
@@ -11,7 +10,7 @@ import org.openqa.selenium.opera.OperaDriver;
 public class BaseOfProject {
     public static WebDriver driver;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         chrome_launch();
         chrome_close();
         opera_launch();
@@ -148,6 +147,35 @@ public class BaseOfProject {
     }
     public static void ClickOnElementByLinkText(String LinkText){
         driver.findElement(By.linkText(LinkText)).click();
+    }
+    //Click on Element
+    public static void clickOnElementBy_ID(String id){
+        driver.findElement(By.id(id)).click();
+    }
+    public static void clickOnElementBy_Name(String Name){
+        driver.findElement(By.name(Name)).click();
+    }
+    public static void clickOnElementBy_Xpath(String Xpath){
+        driver.findElement(By.xpath(Xpath)).click();
+    }
+    public static void clickOnElementBy_Css(String Css){
+        driver.findElement(By.cssSelector(Css)).click();
+    }
+    public static void clickOnElementByLinkText(String LinkText){
+        driver.findElement(By.linkText(LinkText)).click();
+    }
+    //Wait
+    public static void smallWait() throws InterruptedException {
+        Thread.sleep(3000);
+    }
+    public static void midWait() throws InterruptedException {
+        Thread.sleep(7000);
+    }
+    public static void longWait() throws InterruptedException {
+        Thread.sleep(10000);
+    }
+    public static void customWait(int MileSeconds) throws InterruptedException {
+        Thread.sleep(MileSeconds);
     }
 
 }
