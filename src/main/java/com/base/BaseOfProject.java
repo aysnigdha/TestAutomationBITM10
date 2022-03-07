@@ -1,16 +1,23 @@
 package com.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 
 public class BaseOfProject {
     public static WebDriver driver;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         chrome_launch();
         chrome_close();
         opera_launch();
@@ -18,6 +25,8 @@ public class BaseOfProject {
         edge_launch();
         edge_close();
         url_open("https://google.com/");
+
+        //web_browser
     }
     public static WebDriver launchBrowser(String browser) {
         if(browser.equalsIgnoreCase("chrome")) {
@@ -133,6 +142,7 @@ public class BaseOfProject {
         }
         driver.get(url);
     }
+    //locator
     public static void Locator_ID(String ID){
         driver.findElement(By.id(ID));
     }
@@ -177,6 +187,41 @@ public class BaseOfProject {
     public static void customWait(int MileSeconds) throws InterruptedException {
         Thread.sleep(MileSeconds);
     }
+    //Screenshots
+    public static void getVisiblePartScreenshot(String name) throws IOException {
+        //Screenshot Capture
+        File screenshotFile= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        //Store Image
+        FileUtils.copyFile(screenshotFile,new File("./src/main/ScreenshotImages/"+name+".png"),true);
+    }
+    public static void getFullPageScreenshot(String name) throws IOException {
+        //Screenshot Capture
+        Screenshot entirePage=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
+
+        //Store Image
+        ImageIO.write(entirePage.getImage(),"PNG",new File("./src/main/ScreenshotImages/"+name+".png"));
+    }
+    public static void getElementScreenshot(String name) throws IOException {
+        WebElement SearchBox= driver.findElement(By.name("search"));
+        //Screenshot Capture
+        File screenshotFile= ((TakesScreenshot)SearchBox).getScreenshotAs(OutputType.FILE);
+        //Store Image
+        FileUtils.copyFile(screenshotFile,new File("./src/main/ScreenshotImages/"+name+".png"),true);
+    }
+    public static void getHighlightElementScreenshot(String name) throws IOException {
+        WebElement SearchBox= driver.findElement(By.name("search"));
+
+        JavascriptExecutor jse=(JavascriptExecutor)driver;
+
+        //Highlight Element with Red border 5px
+        jse.executeScript("arguments[0].style.border='5px solid red' ",SearchBox);
+
+        //Screenshot Capture
+        File screenshotFile= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        //Store Image
+        FileUtils.copyFile(screenshotFile,new File("./src/main/ScreenshotImages/HighlightSearchBox.jpeg"),true);
+    }
+
 
 }
 
